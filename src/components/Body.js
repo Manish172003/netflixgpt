@@ -1,9 +1,17 @@
-import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth } from "../utils/firebase";
 
 import Login from "../components/Login";
 
 import Browse from "../components/Browse";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -16,9 +24,12 @@ const Body = () => {
       element: <Browse />,
     },
   ]);
+
+ 
+
   return (
     <div>
-      <RouterProvider router={appRouter} />
+      <RouterProvider router={appRouter}></RouterProvider>
     </div>
   );
 };
