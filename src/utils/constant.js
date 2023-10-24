@@ -5,9 +5,16 @@ export const USER_AVATAR =
   "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745";
 
 export const API_OPTIONS = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWE3MTQxMTYzNDljZDMwYjQyZjM5NGQyODI3ZjQ0YyIsInN1YiI6IjY1MzNiY2RlOTFmMGVhMDExYjNiYjBkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YguSK9rQi6ny0SEnBt3_oFbYc06di0-onSMeQOrBF20'
-  }
+    accept: "application/json",
+    Authorization:
+      "YOUR_API_KEY"
+  },
 };
+
+         
+export const NETFLIX_BANNER =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_medium.jpg";
+
+export const IMG_CDN = "https://image.tmdb.org/t/p/w780";

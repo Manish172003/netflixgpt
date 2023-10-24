@@ -8,8 +8,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../utils/userSlice";
-import { USER_AVATAR } from "../utils/constant";
+import { addUser, addmusic } from "../utils/userSlice";
+import { NETFLIX_BANNER, USER_AVATAR } from "../utils/constant";
 
 const Login = () => {
   const [signIn, setSignIn] = useState(true);
@@ -42,24 +42,23 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: username.current.value,
-            photoURL: USER_AVATAR
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
-              addUser({
-                uid: uid,
-                email: email,
-                displayName: displayName,
-                photoURL: photoURL,
-              }));
-           
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
             })
             .catch((error) => {
               setError(error.message);
             });
           console.log(user);
-       
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -68,7 +67,6 @@ const Login = () => {
           if (errorCode === "auth/email-already-in-use")
             setError("Email is Already Registered");
           console.log(errorCode);
-     
         });
     } else {
       signInWithEmailAndPassword(
@@ -80,7 +78,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -97,7 +94,7 @@ const Login = () => {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" bg-black w-4/12 h-[88%] absolute left-[34%] top-[12%] text-white p-16 bg-opacity-80"
+        className=" bg-black w-screen p-24 md:w-4/12 top-[50%] h-screen md:h-[88%] absolute md:left-[34%] md:top-[12%] text-white md:p-16 md:bg-opacity-80"
       >
         <h1 className="font-bold text-3xl my-4">
           {" "}
@@ -133,10 +130,10 @@ const Login = () => {
 
         <p className=" my-4 text-[#737373] cursor-pointer">
           {!signIn ? "Already a Customer ? " : "New to Netflix ? "}
-          <button
+          <button t
             className="text-white"
             onClick={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               setSignIn(!signIn);
             }}
           >
@@ -145,6 +142,7 @@ const Login = () => {
         </p>
 
         <button
+          type="submit"
           className="p-3 my-4 bg-[#e50914] w-full rounded-sm"
           onClick={handleSubmit}
         >
@@ -153,8 +151,8 @@ const Login = () => {
       </form>
 
       <img
-        className="bg-opacity-50"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
+        className=" hidden md:block bg-opacity-50"
+        src={NETFLIX_BANNER}
       ></img>
     </div>
   );
